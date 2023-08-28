@@ -1,0 +1,76 @@
+<!-- <app-header></app-header> -->
+
+<!-- <div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">title</th>
+          <th scope="col">prix</th>
+          <th scope="col">niveau</th>
+          <th scope="col">pourcentage</th>
+          <th scope="col">publicationDate</th>
+          <th scope="col">image</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles">
+          <td>{{ article.articleid }}</td>
+          <td>{{ article.title }}</td>
+          <td>{{ article.prix }}</td>
+          <td>{{ article.niveau }}</td>
+          <td>{{ article.pourcentage }}</td>
+          <td>{{ article.publicationDate }}</td>
+
+          <td>
+            <img [src]="getData(article.image)" alt="Article Image">
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+
+<div class="card">
+  <p-table [value]="articles" [tableStyle]="{'min-width': '60rem'}">
+      <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+              Articles
+              <p-button icon="pi pi-refresh"></p-button>
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th>ID</th>
+              <th>title</th>
+              <th>prix</th>
+              <th>niveau</th>
+              <th>pourcentage</th>
+              <th>publicationDate</th>
+              <th>image</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-article>
+          <tr>
+              <td>{{article.articleid}}</td>
+              <td>{{article.title}}</td>
+              <td><img [src]="getArticleImageUrl(article.articleid) | async" [alt]="article.title" width="100" class="shadow-4" /></td>
+
+              <td>{{article.prix | currency:'USD'}}</td>
+              <td>{{article.niveau}}</td>
+              <td><p-rating [ngModel]="article.pourcentage" [readonly]="true" [cancel]="false"></p-rating></td>
+              <!-- <td><p-tag [value]="article.inventoryStatus" [severity]="getSeverity(article.inventoryStatus)"></p-tag></td> -->
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+              In total there are {{articles ? articles.length : 0 }} articles.
+          </div>
+      </ng-template>
+  </p-table>
+</div>
+<!-- <app-footer></app-footer> -->
